@@ -1,0 +1,65 @@
+body{
+    background: url('https://avatars.mds.yandex.net/get-pdb/1879671/03d97dc1-38bc-4680-955a-c388b7a15d9c/s1200');
+    background-size: cover;
+    margin: auto;
+    position: relative;
+    font-family:  'Verdana', sans-serif;
+    color: blanchedalmond;
+    text-align: center;
+
+}
+.entrance{
+    text-align: center;
+    margin:15% ;
+    padding:3px;
+}
+fieldset .first{
+    opacity: 0.6;
+    text-align: center;
+}
+input{
+    color: blanchedalmond;
+    margin-top: 5mm;
+    min-height: fit-content;
+    background-image:
+     linear-gradient(to right, rgba(4, 46, 80, 0.932), rgba(88, 51, 3, 0.897) 50%, rgb(143, 141, 5) 90%, rgba(122, 71, 3, 0.5));
+}
+.button {
+    position: relative;
+    display: inline-block;
+    color: blanchedalmond;
+    font-weight: bolder;
+    text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+    padding: 1em 2em;
+    border-radius: 5px ;
+    background: url('https://avatars.mds.yandex.net/get-pdb/1879671/03d97dc1-38bc-4680-955a-c388b7a15d9c/s1200');
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+    box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+    opacity:0.77;
+    margin-bottom: 4mm;
+}
+.links a{
+    text-decoration: none;
+    margin: 9px;
+    padding: 6px;
+    text-transform: none;
+    display: inline table;
+    font-size:15px;
+    font-weight: lighter;
+    color: rgba(255,255,255,.5);
+}
+.links a:hover{
+    color: blanchedalmond;
+    border:none;
+}
+main{
+    background-color: rgba(4, 46, 80, 0.332) ;
+    margin: 80px;
+}
+.buttons{
+    margin-top:3mm;
+}
+fieldset{
+    padding-left: 5mm;
+}

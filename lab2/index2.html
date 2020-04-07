@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link href="style.css" rel="stylesheet">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Регистрация </title>
+</head>
+
+<body>
+    <header> </header>
+    <main>
+        <div class="content">
+            <h1> Регистрация </h1>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group"><label for="name"> Ф.И.О.: </label>
+                    <input name="name" type="text" id="name" placeholder="Иванов Иван Иванович" autofocus required>
+                </div>
+                <div class="form-group"><label for="email">Адрес эл.почты: </label>
+                    <input name="email" type="email" id="email" placeholder="ivanov@mail.ru" required autofocus> </div>
+                <fieldset>
+                    <div class="form-group"><label for="country">Страна проживания: </label> <input name="country"
+                            type="search" id="country" placeholder="Россия" autofocus required>
+                        <label for="city">Город проживания: </label> <input name="city" type="search" id="city"
+                            placeholder="Москва" required autoficus></div>
+                </fieldset>
+                <div class="form-group"><label for="date"> Дата рождения: </label> <input type="date" name="date"
+                        id="date" required> </div>
+                <div class="form-group"> <label for="number">Моб.телефон: </label>
+                    <input type="tel" name="number" id="number" placeholder="+7-XXX-XXX-XX-XX" required autofocus>
+                </div>
+                <div class="form-group"><label for="photo">Добавить фото </label>
+                    <input type="file" name="photo" id="photo"> </div>
+                <div class="buttons"> <button class="button"> Сохранить <img
+                            src="https://icon-icons.com/icons2/37/PNG/32/savetheapplication_guardar_2958.png"
+                            width="18px" height="18px"> </button> </div>
+        </div>
+        </form>
+        </div>
+    </main>
+</body>
+
+</html>
