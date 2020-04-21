@@ -17,6 +17,8 @@
                 <div class="form-group"><label for="name"> Ф.И.О.: </label>
                     <input name="name" type="text" id="name" placeholder="Иванов Иван Иванович" autofocus required>
                 </div>
+                <div class="form-group"><label for="sex">Укажите свой пол: </label> <input type="radio" name="sex"
+                        id="sex">Женский <input name="sex" type="radio" id="sex">Мужской </div>
                 <div class="form-group"><label for="email">Адрес эл.почты: </label>
                     <input name="email" type="email" id="email" placeholder="ivanov@mail.ru" required autofocus> </div>
                 <fieldset>
@@ -30,6 +32,14 @@
                 <div class="form-group"> <label for="number">Моб.телефон: </label>
                     <input type="tel" name="number" id="number" placeholder="+7-XXX-XXX-XX-XX" required autofocus>
                 </div>
+                <div class="form-group"><p>Предпочитаемый браузер: </p> <p><select>
+                        <option>Google Chrome </option>
+                        <option>Firefox </option>
+                        <option>Microsoft Edge </option>
+                        <option>Yandex </option>
+                </select></p></div>
+                    <div class="form-group"><p>Ваши предпочтения:</p>
+                    <p><textarea id="preferences" rows="3" cols="25" placeholder="Введите текст"> </textarea></p> </div>
                 <div class="form-group"><label for="photo">Добавить фото </label>
                     <input type="file" name="photo" id="photo"> </div>
                 <div class="buttons"> <button class="button"> Сохранить <img

@@ -1,7 +1,6 @@
 body{
     background: url('https://avatars.mds.yandex.net/get-pdb/1879671/03d97dc1-38bc-4680-955a-c388b7a15d9c/s1200');
     background-size: cover;
-    margin: auto;
     position: relative;
     font-family:  'Verdana', sans-serif;
     color: blanchedalmond;
@@ -19,7 +18,7 @@ fieldset .first{
 }
 input{
     color: blanchedalmond;
-    margin-top: 5mm;
+    
     min-height: fit-content;
     background-image:
      linear-gradient(to right, rgba(4, 46, 80, 0.932), rgba(88, 51, 3, 0.897) 50%, rgb(143, 141, 5) 90%, rgba(122, 71, 3, 0.5));
@@ -41,13 +40,14 @@ input{
 }
 .links a{
     text-decoration: none;
-    margin: 9px;
     padding: 6px;
     text-transform: none;
     display: inline table;
-    font-size:15px;
+    font-size:12px;
     font-weight: lighter;
     color: rgba(255,255,255,.5);
+    margin-left: auto;
+    margin-right: auto;
 }
 .links a:hover{
     color: blanchedalmond;
@@ -62,4 +62,24 @@ main{
 }
 fieldset{
     padding-left: 5mm;
+}
+select{
+    opacity: 0.7;
+    background-image:linear-gradient(to right, rgba(4, 46, 80, 0.932), rgba(88, 51, 3, 0.897) 50%, rgb(143, 141, 5) 90%, rgba(122, 71, 3, 0.5));
+    color:inherit;
+}
+textarea{
+    background-image:linear-gradient(to right, rgba(4, 46, 80, 0.932), rgba(88, 51, 3, 0.897) 50%, rgb(143, 141, 5) 90%, rgba(122, 71, 3, 0.5));
+    opacity:0.5;
+    color:inherit;
+}
+.form-group{
+    margin-top: 2mm;
+}
+ br{
+    margin: 1mm;
+    text-align: center;
+}
+.form-group p{
+    margin: 2mm;
 }
