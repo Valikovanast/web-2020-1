@@ -1,0 +1,106 @@
+body{
+    font-family: 'Cormorant Garamond', serif;
+    overflow: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('1.png');
+}
+.call-to-action{
+    background-image: linear-gradient(rgb(35, 6, 61)20%, rgb(93, 3, 105) 40%, rgb(73, 9, 1));
+    color: cornsilk;
+}
+.technologies .container-fluid{
+    color: beige;
+}
+.technologies .img-fluid{
+    object-fit: cover;
+}
+.footer{
+    background-color: rgb(202, 141, 62);
+    color: cornsilk;
+    opacity: 0.7;
+}
+.navbar{
+    border-bottom: 2px solid rgb(168, 162, 101);
+}
+.contacts{
+    color: white;
+}
+h1, h2, h3, h4, li a{
+    font-family: 'Frank Ruhl Libre', serif;
+}
+.leftel{
+    color: rgb(15, 15, 15);
+}
+li a{
+    color: rgb(192, 189, 155);
+    list-style: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-shadow: 2px 4px 5px rgb(192, 189, 155);
+}
+li a:after{
+    content: "";
+    background-color: rgb(155, 111, 70);
+    height: 1px;
+    width: 0%;
+    display: block;
+    transition: width 0.3s ease-in-out;
+   
+}
+li a:hover{
+    color: rgb(155, 111, 70);
+    text-shadow: none;
+}
+li a:hover:after, li a:focus:after{
+    width: 100%;
+    color: rgb(155, 111, 70);
+    text-shadow: none;
+}
+.container-fluid .banner{
+    opacity: 0.9;
+}
+.container-fluid{
+    background-image: linear-gradient(rgb(77, 8, 31) 20%,rgb(47, 3, 97) 40%, rgb(46, 2, 6));
+    animation: back 5s ease-in-out infinite alternate;
+}
+
+.col-md-4{
+    color: darkgrey;
+    background-color: black;
+}
+.resources{
+    color: beige;
+}
+@keyframes back{
+    0%{
+        background-image: linear-gradient(rgb(199, 100, 169)10%,rgb(196, 114, 118)40%, rgb(231, 188, 139));
+    }
+    25%{
+        box-shadow: 0 -100px 70px -100px rgb(192, 151, 97) inset,
+    }
+    50%{
+        background-image: linear-gradient(rgba(207, 138, 138, 0.842)10%,rgb(229, 143, 179)30%, rgb(240, 215, 170));
+        
+    }
+    75%{
+        box-shadow: 0 -200px 70px -100px rgb(241, 167, 118) inset;
+    }
+    100%{
+        background-image: linear-gradient(rgb(241, 150, 150)30%,rgb(230, 137, 157)40%, rgb(173, 120, 184));
+        
+    }
+}
+
+.heading-line{
+    background-color: rgb(75, 13, 5);
+    height: 3px;
+    width: 200px;
+    border: none;
+    box-shadow: 0 0 20px 4px rgb(184, 169, 169);
+}
+section, .container-fluid{
+    margin: 0 5px;
+}
