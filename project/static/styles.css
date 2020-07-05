@@ -1,0 +1,28 @@
+body{
+    color: orange;
+    background-color: darkgrey;
+    font-family: 'Varela Round', sans-serif;
+}
+nav{
+    color: orange;
+    list-style: none;
+}
+nav a{
+    color: orange;
+}
+#carouselcaptions{
+    position: relative;
+}
+.navbar-collapse li:hover{
+    color: ivory;
+}
+.carousel-item{
+    margin-top: 100px;
+    text-align: center;
+    background-color: black;
+    color: green;
+
+}
+.forcarousel{
+    margin-top: 40px;
+}

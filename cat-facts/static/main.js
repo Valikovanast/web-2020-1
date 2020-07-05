@@ -1,5 +1,4 @@
-
-
+let q;
 function createPageBtn(page, classes = []) {
     let btn = document.createElement('button');
     classes.push('btn');
@@ -13,24 +12,24 @@ function createPageBtn(page, classes = []) {
 
 function renderPaginationElement(info) {
     let btn;
-    let paginationcontainer = document.querySelector('.pagination');//получение всех кнопок
-    paginationcontainer.innerHTML = '';
+    let paginationContainer = document.querySelector('.pagination');
+    paginationContainer.innerHTML = '';
 
     btn = createPageBtn(1, ['first-page-btn']);
     btn.innerHTML = 'Первая страница';
     if (info.current_page == 1) {
         btn.style.visibility = 'hidden';
     }
-    paginationcontainer.append(btn);
+    paginationContainer.append(btn);
 
-    let buttonscontainer = document.createElement('div');
-    buttonscontainer.classList.add('pages-btns');
-    paginationcontainer.append(buttonscontainer);
+    let buttonsContainer = document.createElement('div');
+    buttonsContainer.classList.add('pages-btns');
+    paginationContainer.append(buttonsContainer);
 
     let start = Math.max(info.current_page - 2, 1);
     let end = Math.min(info.current_page + 2, info.total_pages);
     for (let i = start; i <= end; i++) {
-        buttonscontainer.append(createPageBtn(i, i == info.current_page ? ['active'] : []));
+        buttonsContainer.append(createPageBtn(i, i == info.current_page ? ['active'] : []));
     }
 
     btn = createPageBtn(info.total_pages, ['last-page-btn']);
@@ -38,14 +37,14 @@ function renderPaginationElement(info) {
     if (info.current_page == info.total_pages) {
         btn.style.visibility = 'hidden';
     }
-    paginationcontainer.append(btn);
+    paginationContainer.append(btn);
 }
 
 function perPageBtnHandler(event) {
     downloadData(1);
 }
 
-function setPaginationinfo(info) {
+function setPaginationInfo(info) {
     document.querySelector('.total-count').innerHTML = info.total_count;
     let start = info.total_count > 0 ? (info.current_page - 1) * info.per_page + 1 : 0;
     document.querySelector('.current-interval-start').innerHTML = start;
@@ -56,12 +55,12 @@ function setPaginationinfo(info) {
 function pageBtnHandler(event) {
     if (event.target.dataset.page) {
         downloadData(event.target.dataset.page);
+        window.scrollTo(0, 0);
     }
 }
 
-
 function createAuthorElement(record) {
-    let user = record.user || { 'name': { 'first': '', 'last': ''}};
+    let user = record.user || { 'name': { 'first': '', 'last': '' } };
     let authorElement = document.createElement('div');
     authorElement.classList.add('author-name');
     authorElement.innerHTML = user.name.first + ' ' + user.name.last;
@@ -83,14 +82,12 @@ function createFooterElement(record) {
     return footerElement;
 }
 
-
 function createContentElement(record) {
     let contentElement = document.createElement('div');
     contentElement.classList.add('item-content');
     contentElement.innerHTML = record.text;
     return contentElement;
 }
-
 
 function createListItemElement(record) {
     let itemElement = document.createElement('div');
@@ -100,21 +97,12 @@ function createListItemElement(record) {
     return itemElement;
 }
 
-
-function renderRecords(records) {//при загрузке проходит по каждой записи и создает новый элемент 
+function renderRecords(records) {
     let factsList = document.querySelector('.facts-list');
     factsList.innerHTML = '';
     for (let i = 0; i < records.length; i++) {
         factsList.append(createListItemElement(records[i]));
     }
-}
-
-function search(record){
-    let src=document.querySelector('.search-field').value;
-    if(src==record.type){
-    }
-
-
 }
 
 function downloadData(page = 1) {
@@ -123,20 +111,28 @@ function downloadData(page = 1) {
     let perPage = document.querySelector('.per-page-btn').value;
     url.searchParams.append('page', page);
     url.searchParams.append('per-page', perPage);
-    url.searchParams.set('q',search);//добавление и кодирование элементов к url
-    let xhr = new XMLHttpRequest();//создание нового объекта
+    if (q) url.searchParams.append('q', q);
+    let xhr = new XMLHttpRequest();
     xhr.open('GET', url);
-    xhr.responseType = 'json';//ожидаемый тип ответа
+    xhr.responseType = 'json';
     xhr.onload = function () {
-        renderRecords(this.response.records);//загрузка данных
-        setPaginationinfo(this.response['_pagination']);
-        renderPaginationElement(this.response['_pagination']); //response-тело ответа сервера
-    }
+        renderRecords(this.response.records);
+        setPaginationInfo(this.response['_pagination']);
+        renderPaginationElement(this.response['_pagination']);
+    };
     xhr.send();
+}
+
+
+function search(e) {
+    e.preventDefault();
+    q = document.querySelector('.search-field').value;
+    downloadData();
 }
 
 window.onload = function () {
     downloadData();
     document.querySelector('.pagination').onclick = pageBtnHandler;
     document.querySelector('.per-page-btn').onchange = perPageBtnHandler;
-}
+    document.querySelector('.search-form').addEventListener('submit', search);
+};
