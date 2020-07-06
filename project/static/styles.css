@@ -89,3 +89,8 @@ h2, h3, h5, p{
     justify-content: space-between;
     flex-flow: row nowrap;
 }
+.cont{
+    display: flex;
+    justify-content: start;
+    flex-flow: column nowrap;
+}

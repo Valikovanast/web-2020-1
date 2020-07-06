@@ -1,64 +1,111 @@
 let page = 20;
-function record_path(id) {
-    return `/api/data1/${id}`;//для определенной записи
+function hosting(id) {
+    return `host${id}`;//для определенной записи
 }
 
-let host = 'http://exam-2020-1-api.std-900.ist.mospolytech.ru';
-let records_path = '/api/data1';//общий
+let host = 'http://exam-2020-1-api.std-900.ist.mospolytech.ru/api/data1';
 
-function createBtn(pages, classes = []) {
-    let btn = document.createElement('button');
-    classes.push('btn');
-    for (cls of classes) {
-        btn.classList(cls);
+function Deliterec(event) {
+    let url = new URL(hosting(event.target.dataset.recordid), host);
+    sendRecord(url, 'DELETE', function () {
+        document.getElementById(this.response).remove();
+    });
+}
+
+let resources = {
+    init: function () {
+        this.selection();
+    },
+    selection: function () {
+        let i = 1;
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', host, true);
+        xhr.onload = function () {
+            let admArea = JSON.parse(xhr.responseText).map(Area => { return Area.admArea; });
+            (change(admArea)).forEach(element => {
+                let area = document.createElement('option');
+                area.innerHTML = `${String(element)}`;
+                area.setAttribute('value', i); i++;
+                document.getElementById('area').append(area);
+            });
+            let district = JSON.parse(xhr.responseText).map(District => { return District.district; });
+            (change(district)).forEach(element => {
+                let district = document.createElement('option');
+                district.innerHTML = `${String(element)}`;
+                district.setAttribute('value', i); i++;
+                document.getElementById('district').append(district);
+            });
+            let type = JSON.parse(xhr.responseText).map(Type => { return Type.typeObject; });
+            (change(type)).forEach(element => {
+                let typ = document.createElement('option');
+                typ.innerHTML = `${String(element)}`;
+                typ.setAttribute('value', i); i++;
+                document.getElementById('type').append(typ);
+            });
+
+        }
+        xhr.send();
     }
-    btn.dataset.page = page;
-    btn.innerHTML = page;
-    return btn;
-}
-function selectData() {
-
 }
 
-function inputRecord(record) {
+resources.init();
 
-}
+function change(array) {
+    let arr = [];
 
-function pageBtnHandler(e){
-
-}
-function Addsets(){
-
-
-}
-
-function AddingElements(records){
-    let form = document.querySelector('forms'); 
-    let selection;
-    let option;
-    for(record of records){
-    selection= document.getElementById('area');
-    option= document.createElement('option');
-    option.innerHTML=record.admArea;
-    selection.append(option);
-    selection= document.getElementById('district');
-    option=document.createElement('option');
-    option.innerHTML=record.district;
-    selection.append(option);
-    selection= document.getElementById('type');
-    option=document.createElement('option');
-    option.innerHTML=record.typeObject;
-    selection.append(option);
-    selection= document.getElementById('sales');
-    option=document.createElement('option');
-    option.innerHTML=record.socialPrivileges;
-    selection.append(option);
+    for (let str of array) {
+        if (!arr.includes(str)) {
+            arr.push(str);
+        }
+        delete ('null');
     }
-    
-
+    return arr;
 }
 
-function RenderPagination(info){
+function inputRecord(records) {
+    let row;
+    let td;
+    let btn;
+    row = document.createElement('tr');
+    row.id = record.id;
+    td = document.createElement('td');
+    td.innerHTML = record.name;
+    row.append(td);
+    td = document.createElement('td');
+    td.innerHTML = record.typeObject;
+    row.append(td);
+    td = document.createElement('td');
+    td.innerHTML = record.admArea;
+    row.append(td);
+    td = document.createElement('td');
+    td.innerHTML = record.district;
+    row.append(td);
+    td = document.createElement('td');
+    td.innerHTML = record.address;
+    row.append(td);
+    td = document.createElement('td');
+    td.innerHTML = record.rate;
+    row.append(td);
+    td = document.createElement('td');
+    td.innerHTML = record.socialPrivileges;
+    btn = document.createElement('button');
+    btn.dataset.recordid = record.id;
+    btn.innerHTML = 'Удалить';
+    btn.classList.add('btn-danger');
+    td.append(btn)
+    row.append(td);
+    return row;
+}
+function newRec(records) {
+    let t = document.getElementById('recordies').querySelector('tbody');
+    t.innerHTML = '';
+    for (record of records) {
+        t.append(inputRecord(record));
+    }
+}
+
+
+/*function RenderPagination(info) {
     let btn;
     let pagination = document.querySelector('.pagination');
     pagination.innerHTML = '';
@@ -77,11 +124,6 @@ function RenderPagination(info){
         btn.style.visibility = 'hidden';
     }
     pagination.append(btn);
-}
-/*function DeliteRecord(e){
-    let modal=document.getElementById('modal');
-    if(e.target)
-
 }*/
 
 function renderRecordies(records) {
@@ -99,11 +141,8 @@ function renderRecordies(records) {
         td = document.createElement('td');
         td.innerHTML = record.address;
         row.append(td);
-        td=document.createElement('button');
-        //let icon= document.createElement('i');
-        //icon.id='delete';
-        //td.append(icon);
-        //td.onclick= DeliteRecord();
+        td = document.createElement('button');
+
         row.append(td);
         t.append(row);
     }
@@ -141,30 +180,42 @@ function renderRecords(records) {
     }
 }
 
-function sendRec(url, method, onloadHandler, params) {
+function sendRec(url, method, loading) {
     let xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.responseType = 'json';
-    xhr.onload = onloadHandler;
+    xhr.onload = loading;
     xhr.send();
 }
+
+function sendRecord(url, method, loading, params) {
+    let xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.responseType = 'json';
+    xhr.onload = loading;
+    xhr.send(params);
+}
+
 window.onload = function () {
-    let url = new URL(records_path, host);
+    let url = new URL(host);
     sendRec(url, 'GET', function () {
         renderRecords(this.response);
     })
     sendRec(url, 'GET', function () {
         renderRecordies(this.response);
     })
-    sendRec(url,'GET',function(){
-        AddingElements(this.resconse);
-    })
 
-    document.getElementById('btnofSend').onclick = function () {
-        let url = new URL(records_path, host);
-        let params = new FormData(document.getElementById('formation'));
-        sendRec(url, 'POST', function () {
-            inputRecord(this.resconse);
+    document.getElementById('btnofSend').onclick= function(){
+        let url= new URL(host);
+        sendRec(url, 'PUT', function(){
+            
         })
     }
+    /*document.getElementById('btnofSend').onclick = function () {
+        let url = new URL(host);
+        let params = new FormData(document.getElementById('forms'));
+        sendRecord(url, 'POST', function () {
+            document.getElementById('records').querySelector('tbody').append(sendRecord(this.response));
+        }, params);
+    }*/
 }
