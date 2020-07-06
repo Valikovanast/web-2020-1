@@ -1,6 +1,6 @@
 body{
     color: orange;
-    background-color: darkgrey;
+    background-color: rgb(61, 58, 58);
     font-family: 'Varela Round', sans-serif;
 }
 nav{
@@ -9,6 +9,10 @@ nav{
 }
 nav a{
     color: orange;
+    font-family: 'Notable', sans-serif;
+}
+nav li a:hover{
+    color: yellowgreen;
 }
 #carouselcaptions{
     position: relative;
@@ -25,4 +29,63 @@ nav a{
 }
 .forcarousel{
     margin-top: 40px;
+}
+.menu{
+    border: 1px solid black;
+}
+h2, h3, h5, p{
+    color: green;
+    font-family: 'Bangers', cursive;
+}
+.forcarousel strong{
+    color: white;
+    font-size: xx-large;
+    opacity: 1;
+    font-family: 'Bangers', cursive;
+}
+.carousel-caption{
+    background-color: yellowgreen;
+    opacity: 0.8;
+}
+.heading-line{
+    background-color: rgb(5, 88, 16);
+    height: 3px;
+    width: 70%;
+    border: none;
+    box-shadow: 0 0 10px 0 rgb(54, 49, 49);
+}
+.filterssecond{
+    margin-top: 100px;
+}
+.datats, table tbody{
+    color: green;
+    text-align: center;
+}
+.carousel-item{
+    background-color: yellowgreen;
+}
+.pagination .btn:hover{
+    background-color: orange;
+    border: 1px solid greenyellow;
+}
+.pagination .btn, .paginations .btn{
+    background-color: greenyellow;
+    color: black;
+    font-weight: 700;
+    font-size: medium;
+}
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+}
+.paginations{
+    display: flex;
+    justify-content: start;
+    flex-flow: row nowrap;
+}
+.formelements{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
 }
