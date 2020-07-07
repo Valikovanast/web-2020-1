@@ -58,25 +58,35 @@
                 <form action="" class="formelements">
                     <div><label for="names">Наименование</label><br>
                         <input type="text" id="names" name="names">
-                        <br><label for="admround">Административный округ</label><br>
-                        <select name="admround" id="admround"></select>
+                        <br><label for="area">Административный округ</label><br>
+                        <select name="admround" id="area">
+                            <option value="0">Не выбрано</option>
+                        </select>
                     </div>
                     <div>
                         <label for="freeplaces">Количество посадочных мест</label><br>
                         с <input type="text" id="freeplaces" name="freeplaces"> до <input type="text" name="freeplaces"
                             id="freeplaces">
                         <br><label for="web">Является сетевым</label><br>
-                        <select name="web" id="web"></select>
+                        <select name="web" id="web">
+                            <option value="0">Не выбрано</option>
+                        </select>
                         <br><label for="district">Район</label><br>
-                        <select name="district" id="district"></select><br>
+                        <select name="district" id="district">
+                            <option value="0">Не выбрано</option>
+                        </select><br>
                     </div>
                     <div>
                         <label for="date">Дата создания</label><br>
                         c <input type="date" name="date" id="date"> до <input type="date" id="date" name="date">
                         <br> <label for="discounts">Льготы</label>
-                        <select name="discounts" id="discounts"></select><br>
+                        <select name="discounts" id="discounts">
+                            <option value="0">Не выбрано</option>
+                        </select><br>
                         <label for="type">Вид объекта</label> <br>
-                        <select name="type" id="type"></select>
+                        <select name="type" id="type">
+                            <option value="0">Не выбрано</option>
+                        </select>
                     </div>
                     <div><br><input type="submit" name="search" value="Найти"></div>
                 </form>
@@ -104,7 +114,7 @@
                 <button class="btn first-page-btn mx-1">Last</button>
                 <div class="formodal d-flex justify-content-end">
                     <button class="btn btn-warning my-2 my-sm-0 ml-auto d-flex justify-content-end" data-toggle="modal"
-                        data-target="#modal">Добавить предприятие</button>
+                        data-target="#newmodal">Добавить предприятие</button>
                 </div>
             </div>
         </section>
@@ -112,8 +122,7 @@
     <footer>
 
     </footer>
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal" id="newmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -147,7 +156,7 @@
                             <label for="type" class="col-md-3 col-form-label">Вид объекта</label>
                             <div class="col-md-6">
                                 <select name="type" id="type">
-                                    <option value="">Столовая</option>
+                                    <option value="0">Не выбрано</option>
                                 </select>
                             </div>
                         </div>
@@ -155,7 +164,7 @@
                             <label for="area" class="col-md-3 col-form-label">Административный округ</label>
                             <div class="col-md-6">
                                 <select name="area" id="area">
-                                    <option value=""></option>
+                                    <option value="0">Не выбрано</option>
                                 </select>
                             </div>
                         </div>
@@ -163,7 +172,7 @@
                             <label for="district" class="col-md-3 col-form-label">Район</label>
                             <div class="col-md-6">
                                 <select name="district" id="district">
-                                    <option value=""></option>
+                                    <option value="0">Не выбрано</option>
                                 </select>
                             </div>
                         </div>
@@ -183,16 +192,16 @@
                 <input type="hidden" name="action">
                 <input type="hidden" name="task-id">
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-dismiss="modal">Отменить</button>
-                <button type="button" class="btn btn-light">Сохранить</button>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Отменить</button>
+                    <button type="button" class="btn btn-light">Сохранить</button>
+                </div>
             </div>
         </div>
     </div>
     </div>
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal" id="modalis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -213,6 +222,81 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Нет</button>
                     <button type="button" class="btn btn-danger">Да</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="infmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Просмотр информации</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-3 col-form-label">Наименование</label>
+                            <div class="col-md-6">
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="radio" class="col-md-3 col-form-label">Является сетевым</label>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-3 col-form-label">Название управляющей компании</label>
+                            <div class="col-md-6">
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="type" class="col-md-3 col-form-label">Вид объекта</label>
+                            <div class="col-md-6">
+                                <select name="type" id="type">
+                                    <option value="0">Не выбрано</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="area" class="col-md-3 col-form-label">Административный округ</label>
+                            <div class="col-md-6">
+                                <select name="area" id="area">
+                                    <option value="0">Не выбрано</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="district" class="col-md-3 col-form-label">Район</label>
+                            <div class="col-md-6">
+                                <select name="district" id="district">
+                                    <option value="0">Не выбрано</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="address" class="col-md-3 col-form-label">Адресс</label>
+                            <div class="col-md-6">
+                                <textarea name="address" id="address" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="sits" class="col-md-3 col-form-label">Число посадочных мест</label>
+                            <div class="col-md-6">
+                                <input type="text" id="sits" name="sits">
+                            </div>
+                        </div>
+                </div>
+                <input type="hidden" name="action">
+                <input type="hidden" name="task-id">
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Отменить</button>
+                    <button type="button" class="btn btn-light">Сохранить</button>
                 </div>
             </div>
         </div>

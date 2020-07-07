@@ -1,6 +1,6 @@
 let page = 20;
 function hosting(id) {
-    return `host${id}`;//для определенной записи
+    return `http://exam-2020-1-api.std-900.ist.mospolytech.ru/api/data1/${id}`;//для определенной записи
 }
 
 let host = 'http://exam-2020-1-api.std-900.ist.mospolytech.ru/api/data1';
@@ -42,6 +42,21 @@ let resources = {
                 typ.setAttribute('value', i); i++;
                 document.getElementById('type').append(typ);
             });
+            let web = JSON.parse(xhr.responseText).map(Web => { return Web.isNetObject; });
+            (change(web)).forEach(element => {
+                let web = document.createElement('option');
+                web.innerHTML = `${String(element)}`;
+                web.setAttribute('value', i); i++;
+                document.getElementById('web').append(web);
+            });
+            let discounts = JSON.parse(xhr.responseText).map(Discounts => { return Discounts.socialDiscount; });
+            (change(discounts)).forEach(element => {
+                let discounts = document.createElement('option');
+                discounts.innerHTML = `${String(element)}`;
+                discounts.setAttribute('value', i); i++;
+                document.getElementById('discounts').append(discounts);
+            });
+
 
         }
         xhr.send();
@@ -90,7 +105,8 @@ function inputRecord(records) {
     td.innerHTML = record.socialPrivileges;
     btn = document.createElement('button');
     btn.dataset.recordid = record.id;
-    btn.innerHTML = 'Удалить';
+    btn.innerHTML = 'del';
+    btn.classList.add('btn');
     btn.classList.add('btn-danger');
     td.append(btn)
     row.append(td);
@@ -126,12 +142,22 @@ function newRec(records) {
     pagination.append(btn);
 }*/
 
+function GetRec(event){
+    let url;
+    sendRecord(url,'PUT', function(){
+
+    } )
+}
+
 function renderRecordies(records) {
     let t = document.getElementById('recordies').querySelector('tbody');
     let row;
     let td;
+    let btn;
+    let a;
     for (record of records) {
         row = document.createElement('tr');
+        row.id = record.id;
         td = document.createElement('td');
         td.innerHTML = record.name;
         row.append(td);
@@ -141,8 +167,27 @@ function renderRecordies(records) {
         td = document.createElement('td');
         td.innerHTML = record.address;
         row.append(td);
-        td = document.createElement('button');
-
+        td= document.createElement('td');
+        btn = document.createElement('button');
+        btn.dataset.recordid = record.id;
+        btn.innerHTML = 'del';
+        btn.classList.add('btn');
+        btn.classList.add('btn-danger');
+        btn.dataset.toggle="modal";
+        btn.dataset.target="#modalis";
+        btn.onclick=Deliterec;
+        td.append(btn);
+        btn=document.createElement('button');
+        btn.dataset.recordid=record.id;
+        btn.innerHTML='inf';
+        btn.classList.add('btn');
+        btn.classList.add('btn-light');
+        btn.dataset.toggle="modal";
+        btn.dataset.target="#infmodal";
+        td.append(btn);
+        btn=document.createElement('input');
+        btn.type="radio";
+        td.append(btn);
         row.append(td);
         t.append(row);
     }
@@ -153,6 +198,7 @@ function renderRecords(records) {
     let t = document.getElementById('records').querySelector('tbody');
     let row;
     let td;
+    let btn;
     for (record of records) {
         row = document.createElement('tr');
         td = document.createElement('td');
@@ -176,6 +222,12 @@ function renderRecords(records) {
         td = document.createElement('td');
         td.innerHTML = record.socialPrivileges;
         row.append(td);
+        td=document.createElement('td');
+        btn=document.createElement('button');
+        btn.innerHTML='add';
+        btn.classList.add('btn-light');
+        td.append(btn);
+        row.append(td);
         t.append(row);
     }
 }
@@ -195,6 +247,10 @@ function sendRecord(url, method, loading, params) {
     xhr.onload = loading;
     xhr.send(params);
 }
+function Menue(records) {
+    let menu = document.getElementById('menu').querySelector('div').forEach();
+
+}
 
 window.onload = function () {
     let url = new URL(host);
@@ -204,18 +260,11 @@ window.onload = function () {
     sendRec(url, 'GET', function () {
         renderRecordies(this.response);
     })
-
-    document.getElementById('btnofSend').onclick= function(){
-        let url= new URL(host);
-        sendRec(url, 'PUT', function(){
-            
-        })
-    }
-    /*document.getElementById('btnofSend').onclick = function () {
-        let url = new URL(host);
-        let params = new FormData(document.getElementById('forms'));
-        sendRecord(url, 'POST', function () {
-            document.getElementById('records').querySelector('tbody').append(sendRecord(this.response));
-        }, params);
-    }*/
+/* document.getElementById('btnofSend').onclick = function () {
+     let url = new URL(host);
+     let params = new FormData(document.getElementById('forms'));
+     sendRecord(url, 'POST', function () {
+         document.getElementById('records').querySelector('tbody').append(sendRecord(this.response));
+     }, params);
+ }*/
 }
