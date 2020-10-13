@@ -120,7 +120,9 @@
         </section>
     </main>
     <footer>
-
+        <div class="container text-center my-1">
+            <h4>Департамент торговли и услуг города Москвы</h4>
+        </div>
     </footer>
     <div class="modal" id="newmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -131,29 +133,40 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form id="creating">
+                    <div class="modal-body">
                         <div class="form-group row">
                             <label for="name" class="col-md-3 col-form-label">Наименование</label>
-                            <div class="col-md-6">
-                                <input type="text" name="name" id="name" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="name" id="name" class="form-control">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="radio" class="col-md-3 col-form-label">Является ли сетевым</label>
+                            <div class="col-md-12">
+                                <label for="radio" class="col-md-3 col-form-label">Является ли сетевым</label>
+                            </div>
                             <div class="col-md-6">
                                 Да<input type="radio" name="radio" id="radio" class="form-control">
+                            </div>
+                            <div class="col-md-6 mx-3">
                                 Нет<input type="radio" name="radio" id="radio" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="name" class="col-md-3 col-form-label">Название управляющей компании</label>
+                            <div class="col-md-6">
+                                <label for="name" class="col-md-3 col-form-label">Название управляющей
+                                    компании</label>
+                            </div>
                             <div class="col-md-6">
                                 <input type="text" name="name" id="name" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="type" class="col-md-3 col-form-label">Вид объекта</label>
+                            <div class="col-md-6">
+                                <label for="type" class="col-md-3 col-form-label">Вид объекта</label>
+                            </div>
                             <div class="col-md-6">
                                 <select name="type" id="type">
                                     <option value="0">Не выбрано</option>
@@ -161,7 +174,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="area" class="col-md-3 col-form-label">Административный округ</label>
+                            <div class="col-md-6">
+                                <label for="area" class="col-md-3 col-form-label">Административный округ</label>
+                            </div>
                             <div class="col-md-6">
                                 <select name="area" id="area">
                                     <option value="0">Не выбрано</option>
@@ -169,7 +184,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="district" class="col-md-3 col-form-label">Район</label>
+                            <div class="col-md-6">
+                                <label for="district" class="col-md-3 col-form-label">Район</label>
+                            </div>
                             <div class="col-md-6">
                                 <select name="district" id="district">
                                     <option value="0">Не выбрано</option>
@@ -177,26 +194,57 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="address" class="col-md-3 col-form-label">Адресс</label>
+                            <div class="col-md-6">
+                                <label for="address" class="col-md-3 col-form-label">Адресс</label>
+                            </div>
                             <div class="col-md-6">
                                 <textarea name="address" id="address" cols="30" rows="10"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="sits" class="col-md-3 col-form-label">Число посадочных мест</label>
+                            <div class="col-md-6">
+                                <label for="sits" class="col-md-3 col-form-label">Число посадочных мест</label>
+                            </div>
                             <div class="col-md-6">
                                 <input type="text" id="sits" name="sits">
                             </div>
                         </div>
-                </div>
-                <input type="hidden" name="action">
-                <input type="hidden" name="task-id">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="lgots" class="col-md-3 col-form-label">Показатель социальных льгот</label>
+                            </div>
+                            <div class="col-md-6">
+                                Есть <input type="radio" name="lgots" id="lgots">
+                            </div>
+                            <div class="col-md-6">
+                                Нет <input type="radio" id="lgots" name="lgots">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="number" class="col-md-3 col-form-label">Телефон</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" name="number" id="number">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="coord" class="col-md-3 col-form-label">Географические координаты</label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="coord1"> Широта</label>
+                                 <input type="text" name="coord1" id="coord1" >
+                                 <br><label for="coord"> Долгота</label>
+                                 <input type="text" name="coord" id="coord"> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Отменить</button>
+                        <button type="button" class="btn btn-light" id="saving">Сохранить</button>
+                    </div>
                 </form>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Отменить</button>
-                    <button type="button" class="btn btn-light">Сохранить</button>
-                </div>
             </div>
         </div>
     </div>
@@ -210,19 +258,17 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
+                <form id="deletef">
+                    <div class="modal-body">
                         <div class="form-group row">
                             <h6>Вы уверены, что хотите удалить данные предприятия </h6>
                         </div>
-                        <input type="hidden" name="action">
-                        <input type="hidden" name="task-id">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Нет</button>
-                    <button type="button" class="btn btn-danger">Да</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Нет</button>
+                        <button type="button" class="btn btn-danger" id="delete">Да</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -236,7 +282,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="forma">
                         <div class="form-group row">
                             <label for="name" class="col-md-3 col-form-label">Наименование</label>
                             <div class="col-md-6">
@@ -291,12 +337,10 @@
                             </div>
                         </div>
                 </div>
-                <input type="hidden" name="action">
-                <input type="hidden" name="task-id">
                 </form>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Отменить</button>
-                    <button type="button" class="btn btn-light">Сохранить</button>
+                    <button type="button" class="btn btn-light" id="save">Сохранить</button>
                 </div>
             </div>
         </div>

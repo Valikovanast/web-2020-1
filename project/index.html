@@ -268,7 +268,7 @@
 
     </main>
     <footer>
-        <div class="container text-center">
+        <div class="container text-center my-1">
             <h4>Департамент торговли и услуг города Москвы</h4>
         </div>
     </footer>
@@ -282,8 +282,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form id="formation">
+                <form id="formation">
+                    <div class="modal-body">
                         <div class="form-group row">
                             <h4>Позиции заказа</h4>
                         </div>
@@ -330,17 +330,14 @@
                                 <div class="col-sm-12">
                                     <label for="name">ФИО получателя</label>
                                 </div>
-
                             </div>
                         </div>
-                    </form>
-                </div>
-               
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-primary">Создать</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        <button type="button" class="btn btn-primary" id="create">Подтвердить</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
